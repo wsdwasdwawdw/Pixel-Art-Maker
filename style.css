@@ -33,9 +33,12 @@
 .settings *{
     cursor: pointer;
 }
+table{
+    border-collapse: collapse;
+}
 .box{
     border: 1px solid black;
     height: 20px;
-    aspect-ratio: 1;
+    width: 20px;
 }
 
