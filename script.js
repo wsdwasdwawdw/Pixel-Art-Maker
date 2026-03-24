@@ -58,10 +58,8 @@ function events(){
 
         element.addEventListener("contextmenu", (event)=>{
             event.preventDefault();
-            element.style.backgroundColor = "#ffffff";
-            element.style.borderColor = "#000000";
+            element.style.backgroundColor = "transparent";
         })
     });
 }
-
 

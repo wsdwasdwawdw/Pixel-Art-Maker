@@ -2,9 +2,11 @@
     padding: 0;
     margin: 0;
 }
+body{
+    background-color: #00b4d8;
+}
 .container{
     height: 100vh;
-    border: solid 1px black;
     box-sizing: border-box;
     padding: 10px;
     display: flex;
@@ -12,10 +14,10 @@
     gap: 10px;
     
 }
-
 .canvas{
+    background-color: #0077b6;
     position: relative;
-    border: solid 1px black;
+    border: solid 1px #023e8a;
     height: 100%;
     padding: 10px;
     display: grid;
@@ -30,15 +32,70 @@
     bottom: 10px;
     left: 10px;
 }
-.settings *{
-    cursor: pointer;
-}
+
 table{
     border-collapse: collapse;
 }
 .box{
-    border: 1px solid black;
+    border: 1px solid #fff;
     height: 20px;
     width: 20px;
 }
 
+/* INPUTS */
+.inputs *{
+    padding: 5px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.inputs button{
+    background-color: #ade8f4;
+}
+.inputs button:hover{
+    background-color: #caf0f8;
+}
+
+/* SETTINGS */
+.settings{
+    display: flex;
+    align-items: center;
+}
+.settings *{
+    cursor: pointer;
+}
+.settings .colorDiv{
+    position: relative;
+}
+.settings .color{
+    appearance: none;
+    border-radius: 100%; 
+    width: 40px;
+    height: 40px;
+    border: 1px solid #fff;
+    background-color: transparent;
+    overflow: hidden;
+}
+.settings .color::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+.settings .color::-webkit-color-swatch {
+    border: none;
+    border-radius: 50%;
+}
+
+.settings .slider{
+  appearance: none;
+  height: 8px;
+  background: #ddd;
+  border-radius: 4px;
+  outline: none;
+}
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #03045e;
+  border-radius: 50%;
+  cursor: pointer;
+}
