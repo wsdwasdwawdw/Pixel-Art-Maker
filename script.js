@@ -1,6 +1,7 @@
 const table = document.querySelector("table");
 const color = document.querySelector(".color");
 const slider = document.querySelector(".slider");
+const eraser = document.querySelector(".eraser");
 let currentColor = "#000000";
 
 function create(row, col){
@@ -28,7 +29,7 @@ function btn(){
     const col = colInput.value;
 
     create(row, col);
-
+    eraserEvent();
     rowInput.value = ""; 
     colInput.value = "";
     slider.value = 20;
@@ -59,7 +60,50 @@ function events(){
         element.addEventListener("contextmenu", (event)=>{
             event.preventDefault();
             element.style.backgroundColor = "transparent";
-        })
+        });
+
+        
+    });
+    holding();
+
+}
+let isHolding = false;
+
+function holding() {
+    const boxes = document.querySelectorAll(".box");
+
+    // Paint handler defined once per box
+    boxes.forEach(element => {
+        function paint() {
+            if (isHolding) {
+                element.style.backgroundColor = currentColor;
+                element.style.borderColor = currentColor;
+            }
+        }
+
+        element.addEventListener("mouseenter", paint);
+    });
+
+    // Just toggle the flag on hold
+    table.addEventListener('mousedown', () => {
+        isHolding = true;
+    });
+
+    table.addEventListener('mouseup', () => {
+        isHolding = false;
+    });
+
+    table.addEventListener('mouseleave', () => {
+        isHolding = false;
     });
 }
 
+function eraserEvent(){
+    eraser.addEventListener("click", ()=>{
+        const boxes = document.querySelectorAll(".box");
+        boxes.forEach(element =>{
+            element.style.backgroundColor = "transparent";
+            element.style.borderColor = "#fff";
+        }) 
+    });
+}

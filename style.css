@@ -99,3 +99,11 @@ table{
   border-radius: 50%;
   cursor: pointer;
 }
+
+.settings img{
+    height: 30px;
+    aspect-ratio: 1;
+}
+.settings img:hover{
+    filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+}
