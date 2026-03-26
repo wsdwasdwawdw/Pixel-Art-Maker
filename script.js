@@ -60,6 +60,7 @@ function events(){
         element.addEventListener("contextmenu", (event)=>{
             event.preventDefault();
             element.style.backgroundColor = "transparent";
+            element.style.borderColor = "#fff";
         });
 
         
