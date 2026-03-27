@@ -108,3 +108,5 @@ function eraserEvent(){
         }) 
     });
 }
+
+console.log("Working...");
