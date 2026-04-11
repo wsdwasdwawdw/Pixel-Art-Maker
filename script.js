@@ -61,6 +61,7 @@ function events(){
             event.preventDefault();
             element.style.backgroundColor = "transparent";
             element.style.borderColor = "#fff";
+            isright = true;
         });
 
         
@@ -69,6 +70,8 @@ function events(){
 
 }
 let isHolding = false;
+let isright = false;
+let isSpacebarHeld = false;
 
 function holding() {
     const boxes = document.querySelectorAll(".box");
@@ -80,22 +83,47 @@ function holding() {
                 element.style.backgroundColor = currentColor;
                 element.style.borderColor = currentColor;
             }
+
+            if (isright && isSpacebarHeld) {
+                element.style.backgroundColor = "transparent";
+                element.style.borderColor = "#fff";
+            }
+
         }
 
         element.addEventListener("mouseenter", paint);
     });
 
     // Just toggle the flag on hold
-    table.addEventListener('mousedown', () => {
-        isHolding = true;
+    table.addEventListener('mousedown', (event) => {
+        if (event.button === 0) {
+            isHolding = true;
+        } else if (event.button === 2) {
+            isright = true;
+        }
     });
 
     table.addEventListener('mouseup', () => {
         isHolding = false;
+        isright = false;
     });
 
     table.addEventListener('mouseleave', () => {
         isHolding = false;
+        isright = false;
+    });
+
+    // Spacebar hold detection
+    document.addEventListener('keydown', (event) => {
+        if (event.code === 'Space') {
+            isSpacebarHeld = true;
+        }
+    });
+
+    document.addEventListener('keyup', (event) => {
+        if (event.code === 'Space') {
+            isSpacebarHeld = false;
+        }
     });
 }
 
@@ -120,15 +148,17 @@ borderless.addEventListener("click", ()=>{
 	const boxes = document.querySelectorAll(".box");
 	
 	if(checked){
+        table.classList.add("disabled");
 		boxes.forEach(element =>{
-			if(element.style.backgroundColor === ""){-
+			if(element.style.backgroundColor === "" || element.style.backgroundColor === "transparent"){
 				element.style.borderColor = "transparent";
 			}	
 		});
 	}
 	else{
+        table.classList.remove("disabled");
 		boxes.forEach(element =>{
-			if(element.style.backgroundColor === ""){
+			if(element.style.backgroundColor === "" || element.style.backgroundColor === "transparent"){
 				element.style.borderColor = "#fff";
 			}
 			else{
