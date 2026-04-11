@@ -109,4 +109,31 @@ function eraserEvent(){
     });
 }
 
-console.log("Working...");
+let checked = false;
+const borderless = document.querySelector(".borderless");
+borderless.addEventListener("click", ()=>{
+	if(checked)
+		checked = false;
+	else
+		checked = true;
+	console.log(checked);
+	const boxes = document.querySelectorAll(".box");
+	
+	if(checked){
+		boxes.forEach(element =>{
+			if(element.style.backgroundColor === ""){-
+				element.style.borderColor = "transparent";
+			}	
+		});
+	}
+	else{
+		boxes.forEach(element =>{
+			if(element.style.backgroundColor === ""){
+				element.style.borderColor = "#fff";
+			}
+			else{
+				element.style.borderColor = element.style.backgroundColor;
+			}
+		});
+	}
+});
