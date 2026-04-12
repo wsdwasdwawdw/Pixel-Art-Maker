@@ -2,6 +2,7 @@ const table = document.querySelector("table");
 const color = document.querySelector(".color");
 const slider = document.querySelector(".slider");
 const eraser = document.querySelector(".eraser");
+const borderless = document.querySelector(".borderless");
 let currentColor = "#000000";
 
 function create(row, col){
@@ -37,12 +38,14 @@ function btn(){
 
 function events(){
     
+
+    const boxes = document.querySelectorAll(".box");
+
     color.addEventListener("change", ()=>{
         currentColor = color.value;
     });
 
     slider.addEventListener("input", ()=>{
-        const boxes = document.querySelectorAll(".box");
         boxes.forEach((box)=>{
             box.style.height = `${slider.value}px`;
             box.style.width = `${slider.value}px`;
@@ -50,7 +53,6 @@ function events(){
     });
 
     
-    const boxes = document.querySelectorAll(".box");
     boxes.forEach(element => {
         element.addEventListener("click", ()=>{
             element.style.backgroundColor = currentColor;
@@ -84,14 +86,14 @@ function holding() {
                 element.style.borderColor = currentColor;
             }
 
-            if (isright && isSpacebarHeld) {
+            if (isSpacebarHeld) {
                 element.style.backgroundColor = "transparent";
                 element.style.borderColor = "#fff";
             }
 
         }
 
-        element.addEventListener("mouseenter", paint);
+        element.addEventListener("mouseover", paint);
     });
 
     // Just toggle the flag on hold
@@ -128,34 +130,36 @@ function holding() {
 }
 
 function eraserEvent(){
+    
+    const boxes = document.querySelectorAll(".box");
     eraser.addEventListener("click", ()=>{
-        const boxes = document.querySelectorAll(".box");
         boxes.forEach(element =>{
             element.style.backgroundColor = "transparent";
             element.style.borderColor = "#fff";
+            borderless.classList.add("highlight");
+            table.classList.remove("disabled");
         }) 
     });
 }
 
-let checked = false;
-const borderless = document.querySelector(".borderless");
+let visibleBorder = true;
 borderless.addEventListener("click", ()=>{
-	if(checked)
-		checked = false;
-	else
-		checked = true;
-	console.log(checked);
-	const boxes = document.querySelectorAll(".box");
-	
-	if(checked){
+    
+    const boxes = document.querySelectorAll(".box");
+	if(visibleBorder){
+		visibleBorder = false;
+        borderless.classList.remove("highlight");
         table.classList.add("disabled");
 		boxes.forEach(element =>{
 			if(element.style.backgroundColor === "" || element.style.backgroundColor === "transparent"){
 				element.style.borderColor = "transparent";
 			}	
 		});
-	}
-	else{
+
+    }
+    else{
+		visibleBorder = true;
+        borderless.classList.add("highlight");
         table.classList.remove("disabled");
 		boxes.forEach(element =>{
 			if(element.style.backgroundColor === "" || element.style.backgroundColor === "transparent"){
