@@ -171,3 +171,25 @@ borderless.addEventListener("click", ()=>{
 		});
 	}
 });
+
+function borderlessEvent(){
+    
+}
+
+const save = document.querySelector(".save");
+save.addEventListener("click", ()=>{
+    const boxes = document.querySelectorAll(".box");
+    boxes.forEach(element =>{
+        if(element.style.backgroundColor === "" || element.style.backgroundColor === "transparent"){
+            element.style.borderColor = "transparent";
+            element.style.backgroundColor = "transparent";
+        }	
+    });
+
+    html2canvas(table).then(canvas => {
+        const link = document.createElement("a");
+        link.download = "screenshot.png";
+        link.href = canvas.toDataURL();
+        link.click();;
+    });
+});
