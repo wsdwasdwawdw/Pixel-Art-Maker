@@ -3,7 +3,7 @@ const color = document.querySelector(".color");
 const slider = document.querySelector(".slider");
 const eraser = document.querySelector(".eraser");
 const borderless = document.querySelector(".borderless");
-let currentColor = "#000000";
+let currentColor = "#000000"
 
 function create(row, col){
     
