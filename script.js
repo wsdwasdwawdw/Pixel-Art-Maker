@@ -57,12 +57,14 @@ function events(){
         element.addEventListener("click", ()=>{
             element.style.backgroundColor = currentColor;
             element.style.borderColor = currentColor;
+            element.classList.add("colored");
         });
 
         element.addEventListener("contextmenu", (event)=>{
             event.preventDefault();
             element.style.backgroundColor = "transparent";
             element.style.borderColor = "#fff";
+            element.classList.remove("colored");
             isright = true;
         });
 
@@ -84,11 +86,13 @@ function holding() {
             if (isHolding) {
                 element.style.backgroundColor = currentColor;
                 element.style.borderColor = currentColor;
+                element.classList.add("colored");
             }
 
             if (isSpacebarHeld) {
                 element.style.backgroundColor = "transparent";
                 element.style.borderColor = "#fff";
+                element.classList.remove("colored");
             }
 
         }
@@ -151,7 +155,7 @@ borderless.addEventListener("click", ()=>{
         borderless.classList.remove("highlight");
         table.classList.add("disabled");
 		boxes.forEach(element =>{
-			if(element.style.backgroundColor === "" || element.style.backgroundColor === "transparent"){
+            if(!element.classList.contains("colored")){
 				element.style.borderColor = "transparent";
 			}	
 		});
@@ -162,8 +166,8 @@ borderless.addEventListener("click", ()=>{
         borderless.classList.add("highlight");
         table.classList.remove("disabled");
 		boxes.forEach(element =>{
-			if(element.style.backgroundColor === "" || element.style.backgroundColor === "transparent"){
-				element.style.borderColor = "#fff";
+			if(!element.classList.contains("colored")){
+				element.style.borderColor = element.style.backgroundColor;
 			}
 			else{
 				element.style.borderColor = element.style.backgroundColor;
@@ -180,7 +184,7 @@ const save = document.querySelector(".save");
 save.addEventListener("click", ()=>{
     const boxes = document.querySelectorAll(".box");
     boxes.forEach(element =>{
-        if(element.style.backgroundColor === "" || element.style.backgroundColor === "transparent"){
+        if(!element.classList.contains("colored")){
             element.style.borderColor = "transparent";
             element.style.backgroundColor = "transparent";
         }	

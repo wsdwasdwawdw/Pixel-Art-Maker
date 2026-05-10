@@ -25,13 +25,6 @@ body{
     overflow: scroll;
     scrollbar-width: none;
 }
-.settings{
-    position: absolute;
-    display: flex;
-    gap: 10px;
-    bottom: 10px;
-    left: 10px;
-}
 
 table{
     border-collapse: collapse;
@@ -58,7 +51,11 @@ table{
 
 /* SETTINGS */
 .settings{
+    position: absolute;
     display: flex;
+    gap: 10px;
+    bottom: 10px;
+    left: 10px;
     align-items: center;
 }
 .settings *{
@@ -107,7 +104,13 @@ table{
 .settings img:hover{
     filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
 }
-
+.settings .save{
+    background-color: transparent;
+    border: none;
+}
+.settings .save:hover{
+    filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+}
 .borderless{
     height: 20px;
     width: 20px;
